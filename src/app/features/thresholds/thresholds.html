@@ -1,0 +1,30 @@
+<div class="thresholds-container" [class.single-column]="!showDetails()">
+  <div class="grade-list-section">
+    <!-- add loder on loading grades -->
+    <app-grade-list [grades]="sortedGrades()"
+                    [selectedGradeId]="selectedGradeId()"
+                    (gradeSelect)="onGradeSelect($event)"
+                    (gradeDelete)="onGradeDeleteRequest($event)"
+                    (addGrade)="onAddGrade()"/>
+  </div>
+  
+  @if (showDetails()) {
+    <div class="grade-details-section">
+      <app-grade-details [isVisible]="showDetails()"
+                        [grade]="selectedGrade()"
+                        [isLoading]="isLoading()"
+                        (save)="onGradeSave($event)"
+                        (close)="onDetailsClose()"/>
+    </div>
+  }
+</div>
+
+<app-modal title="Delete Grade"
+          confirmButtonText="Delete"
+          [isDangerButton]="true"
+          [isOpen]="showDeleteConfirmation()"
+          [message]="'Are you sure you want to delete the grade ' + gradeToDelete()?.symbolicGrade + '? This action cannot be undone.'"
+          (confirm)="handleDeleteConfirm()"
+          (cancel)="handleDeleteCancel()"/>
+
+<app-toast/>

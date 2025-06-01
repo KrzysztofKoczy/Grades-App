@@ -1,12 +1,28 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from "@angular/core"
+import { CommonModule } from "@angular/common"
 
 @Component({
-  selector: 'app-modal',
-  imports: [],
-  templateUrl: './modal.html',
-  styleUrl: './modal.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-modal",
+  templateUrl: "./modal.html",
+  styleUrls: ["./modal.scss"],
+  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Modal {
+  isOpen = input<boolean>(false);
+  title = input<string>("");
+  message = input<string>("");
+  confirmButtonText = input<string>("");
+  isDangerButton = input<boolean>(false);
 
+  confirm = output<void>();
+  cancel = output<void>();
+
+  onConfirm() {
+    this.confirm.emit();
+  }
+
+  onCancel() {
+    this.cancel.emit();
+  }
 }

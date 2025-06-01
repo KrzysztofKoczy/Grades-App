@@ -1,0 +1,178 @@
+.grade-list {
+  background: #f7f0e9;
+  border-radius: 12px;
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
+}
+
+.grade-list-header {
+  margin-bottom: 24px;
+}
+
+.grade-list-header h2 {
+  margin: 0;
+  color: #333333;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .grade-list-header h2 {
+    font-size: 20px;
+  }
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666666;
+  font-style: italic;
+}
+
+.grade-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    flex: none;
+  }
+}
+
+.grade-items.mobile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.grade-items.full-width-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.grade-item {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 2px solid transparent;
+}
+
+.grade-item:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.grade-item.selected {
+  border-color: #113f82;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.grade-item.mobile-card {
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  min-height: 80px;
+}
+
+.grade-item.mobile-card .grade-info {
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.grade-item.mobile-card .grade-symbol {
+  font-size: 24px;
+}
+
+.grade-item.mobile-card .delete-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 14px;
+  padding: 4px;
+}
+
+.grade-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.grade-symbol {
+  font-size: 18px;
+  font-weight: 700;
+  color: #113f82;
+  min-width: 30px;
+}
+
+.grade-range {
+  color: #666666;
+  font-weight: 500;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+  font-size: 16px;
+  position: relative;
+}
+
+.delete-btn:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.add-grade-btn {
+  background: #c8e0f3;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  color: #333333;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+
+  @media (max-width: 768px) {
+    margin-top: 16px;
+  }
+}
+
+.add-grade-btn:hover {
+  background: #b8d0e3;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-icon {
+  font-size: 20px;
+  font-weight: bold;
+}

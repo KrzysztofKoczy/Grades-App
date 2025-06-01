@@ -1,0 +1,38 @@
+<div class="grade-list">
+  <div class="grade-list-header">
+    <h2>Grade Thresholds</h2>
+  </div>
+  
+  @if (grades().length === 0) {
+    <div class="empty-state">
+      <p>No grades configured yet.</p>
+    </div>
+  } @else {
+    <div class="grade-items" [class.mobile-grid]="isMobileView()" [class.full-width-grid]="isFullWidth() && !isMobileView()">
+      @for (grade of grades(); track grade.id; let i = $index) {
+        <div class="grade-item" 
+             [class.selected]="selectedGradeId() === grade.id"
+             [class.mobile-card]="isMobileView()"
+             (click)="onGradeSelect(grade.id)">
+          <div class="grade-info">
+            <div class="grade-symbol">{{ grade.symbolicGrade }}</div>
+              <div class="grade-range">
+                {{ grade.minPercentage }}% - {{ getMaxPercentage(i) }}%
+              </div>
+          </div>
+          <button class="delete-btn" 
+                  (click)="onGradeDelete($event, grade.id)"
+                  title="Delete grade">
+                  <!-- trash icon -->
+            X
+          </button>
+        </div>
+      }
+    </div>
+  }
+  
+  <button class="add-grade-btn" (click)="onAddGrade()">
+    <span class="add-icon">+</span>
+    ADD NEW GRADE
+  </button>
+</div>

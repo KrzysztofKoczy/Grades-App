@@ -1,0 +1,69 @@
+@use '../../../styles/variables.scss' as *;
+
+.toast-container {
+  position: fixed;
+  top: $spacing-lg;
+  right: $spacing-lg;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.toast {
+  min-width: 300px;
+  padding: $spacing-md;
+  border-radius: 8px;
+  box-shadow: $shadow-lg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: slideIn 0.3s ease ease-out;
+
+  &.toast-SUCCESS {
+    background: $color-success;
+    color: $color-white;
+  }
+
+  &.toast-ERROR {
+    background: $color-error;
+    color: $color-white;
+  }
+
+  &.toast-INFO {
+    background: $color-primary;
+    color: $color-white;
+  }
+}
+
+.toast-message {
+  flex: 1;
+  font-weight: 500;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: $spacing-md;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

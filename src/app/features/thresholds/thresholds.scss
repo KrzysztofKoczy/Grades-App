@@ -1,0 +1,29 @@
+.thresholds-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  height: 100%;
+  transition: grid-template-columns 0.3s ease;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+}
+
+.thresholds-container.single-column {
+  grid-template-columns: 1fr;
+}
+
+.grade-details-section,
+.grade-list-section {
+  min-height: 0;
+  transition: all 0.3s ease;
+
+  @media (max-width: 1024px) {
+    min-height: auto;
+  }
+}
+
+
+
