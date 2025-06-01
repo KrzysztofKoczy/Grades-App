@@ -1,0 +1,8 @@
+<div class="app-layout">
+  <app-side-nav (sidebarToggle)="onSidebarToggle($event)"/>
+    
+  <main class="main-content" [class.sidebar-collapsed]="sidebarCollapsed()">
+    <router-outlet/>
+  </main>
+</div>
+  

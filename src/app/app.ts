@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, ChangeDetectionStrategy, signal } from "@angular/core"
+import { CommonModule } from "@angular/common"
+import { RouterOutlet } from "@angular/router"
+import { SideNav } from "./layout/side-nav/side-nav"
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  selector: "app-root",
+  imports: [CommonModule, RouterOutlet, SideNav],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: "./app.html",
+  styleUrls: ["./app.scss"],
 })
-export class AppComponent {
-  protected title = 'Grades-App';
+export class App {
+  sidebarCollapsed = signal<boolean>(false);
+
+  onSidebarToggle(collapsed: boolean) {
+    this.sidebarCollapsed.set(collapsed);
+  }
 }

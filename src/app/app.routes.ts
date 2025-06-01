@@ -1,5 +1,5 @@
 import type { Routes } from "@angular/router"
-import { Home } from "./features/home/home/home";
+import { Home } from "./features/home/home";
 import { Thresholds } from "./features/thresholds/thresholds";
 
 export const routes: Routes = [

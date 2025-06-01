@@ -1,1 +1,40 @@
-<p>side-nav works!</p>
+<aside class="sidebar" [class.collapsed]="isCollapsed()">
+  <div class="sidebar-header">
+    <div class="logo">
+      <!-- Add icon -->
+      <div class="logo-icon"></div>
+      @if (!isCollapsed()) {
+        <span class="logo-text">Grading</span>
+      }
+    </div>
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <!-- add hevron icons -->
+      {{ isCollapsed() ? 'o' : 'c' }}
+    </button>
+  </div>
+  <hr class="separator">
+  <nav class="sidebar-nav">
+    @for (item of navigationItems; track item.name) {
+      <a class="nav-item"
+        [routerLink]="item.path" 
+        [title]="item.label">
+        <span class="nav-icon">
+          <!-- TODO handle icons -->
+        </span>
+        @if (!isCollapsed()) {
+          <span class="nav-text">{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+</aside>
+
+@if (isCollapsed() && showMobileToggle()) {
+  <button class="mobile-toggle-btn" (click)="toggleSidebar()">
+    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+  </button>
+}
+
+@if (!isCollapsed() && showMobileToggle()) {
+  <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+}
