@@ -5,11 +5,10 @@ import { Grade, GradeCreate, GradeModify } from "../../../../shared/models/grade
 
 @Component({
   selector: "app-grade-details",
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./grade-details.html",
   styleUrls: ["./grade-details.scss"],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GradeDetails {
   isVisible = input<boolean>(false);

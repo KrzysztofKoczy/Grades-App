@@ -3,12 +3,15 @@ import { HttpClient } from "@angular/common/http"
 import { type Observable, BehaviorSubject } from "rxjs"
 import { tap, catchError } from "rxjs/operators"
 import { Grade, GradeCreate, GradeModify } from "../../../shared/models/grade.model"
+import { ToastService } from "../../../shared/components/toast/services/toast.service"
+import { ToastType } from "../../../shared/components/toast/model/toast.config"
 
 @Injectable({
   providedIn: "root",
 })
 export class GradesClient {
   private httpClient = inject(HttpClient);
+  private toastService = inject(ToastService);
 
   grades = signal<Grade[]>([]);
 
@@ -27,7 +30,7 @@ export class GradesClient {
         this.gradesSubject.next(grades);
       }),
       catchError((error) => {
-        console.error("API Error: GET /grades", error);
+        this.toastService.showToast("Error:" + error, ToastType.ERROR);
         throw error;
       }),
     );
