@@ -6,7 +6,7 @@ Aplikacja do zarządzania ocenami, umożliwiająca definiowanie progów procento
 
 ## 🚀 Live Demo
 
-Check out the live application: [Employee Hierarchy Tree Demo](https://krzysztofkoczy.github.io/Grades-App/)
+Sprawdź aplikację live: [Employee Hierarchy Tree Demo](https://krzysztofkoczy.github.io/Grades-App/)
 
 ## Funkcje
 
