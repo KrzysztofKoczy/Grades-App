@@ -1,12 +1,12 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core"
 import { CommonModule } from "@angular/common"
+import { Icon } from "../../shared/icon/icon"
 
 @Component({
   selector: "app-home",
-  standalone: true,
-  imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./home.html",
   styleUrls: ["./home.scss"],
+  imports: [CommonModule, Icon],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {}

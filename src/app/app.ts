@@ -11,9 +11,9 @@ import { SideNav } from "./layout/side-nav/side-nav"
   styleUrls: ["./app.scss"],
 })
 export class App {
-  sidebarCollapsed = signal<boolean>(false);
+  sidebarCollapsed = signal<boolean | string>(false);
 
-  onSidebarToggle(collapsed: boolean) {
+  onSidebarToggle(collapsed: boolean | string) {
     this.sidebarCollapsed.set(collapsed);
   }
 }

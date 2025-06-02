@@ -1,15 +1,23 @@
 <aside class="sidebar" [class.collapsed]="isCollapsed()">
   <div class="sidebar-header">
     <div class="logo">
-      <!-- Add icon -->
-      <div class="logo-icon"></div>
+      <a class="nav-item"
+        routerLink="/user" 
+        title="User">
+      <span class="nav-icon">
+        <app-icon name="user"/>
+      </span>
       @if (!isCollapsed()) {
-        <span class="logo-text">Grading</span>
+        <span class="logo-text">User</span>
       }
+    </a>
     </div>
     <button class="toggle-btn" (click)="toggleSidebar()">
-      <!-- add hevron icons -->
-      {{ isCollapsed() ? 'o' : 'c' }}
+      @if (isCollapsed()) {
+        <app-icon name="chevronRight" [size]="16"/>
+      } @else {
+        <app-icon name="chevronLeft" [size]="16"/>
+      }
     </button>
   </div>
   <hr class="separator">
@@ -19,7 +27,7 @@
         [routerLink]="item.path" 
         [title]="item.label">
         <span class="nav-icon">
-          <!-- TODO handle icons -->
+          <app-icon [name]="item.icon"/>
         </span>
         @if (!isCollapsed()) {
           <span class="nav-text">{{ item.label }}</span>
@@ -31,8 +39,8 @@
 
 @if (isCollapsed() && showMobileToggle()) {
   <button class="mobile-toggle-btn" (click)="toggleSidebar()">
-    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
-  </button>
+    <app-icon name="menu"/>
+ </button>
 }
 
 @if (!isCollapsed() && showMobileToggle()) {

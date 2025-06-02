@@ -1,23 +1,23 @@
+import { TablerIconName } from "../../shared/icon/icons/tabler-icons";
+
 export interface NavigationItem {
   name: string;
   path: string;
-  icon: string;
-//   icon: IconName;
+  icon: TablerIconName;
   label: string;
-}
+};
 
-// TODO handle icons
 export const navigationConfig: NavigationItem[] = [
   {
     name: "home",
     path: "/home",
-    icon: "home.svg",
+    icon: "home",
     label: "Home",
   }, 
   {
     name: "thresholds",
     path: "/thresholds",
-    icon: "thresholds.svg",
+    icon: "settings",
     label: "Grading system",
   },
-]
+];
