@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import { Grade } from "../shared/models/grade.model"
+import { Grade } from "../../../shared/models/grade.model"
 
 @Injectable({
   providedIn: "root",

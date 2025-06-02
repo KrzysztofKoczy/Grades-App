@@ -3,10 +3,11 @@ import { CommonModule } from "@angular/common"
 import type { Grade, GradeCreate, GradeModify } from "../../shared/models/grade.model"
 import { GradeList } from "./components/grade-list/grade-list"
 import { GradeDetails } from "./components/grade-details/grade-details"
-import { GradeService } from "../../services/grade.service"
-import { ToastService, ToastType } from "../../shared/components/toast/toast.service"
+import { GradesClient } from "./services/grades-client"
+import { ToastService } from "../../shared/components/toast/services/toast.service"
 import { Modal } from "../../shared/components/modal/modal"
 import { Toast } from "../../shared/components/toast/toast"
+import { ToastType } from "../../shared/components/toast/model/toast.config"
 
 @Component({
   selector: "app-thresholds",
@@ -16,10 +17,10 @@ import { Toast } from "../../shared/components/toast/toast"
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Thresholds implements OnInit {
-  private gradeService = inject(GradeService);
+  private gradesClient = inject(GradesClient);
   private toastService = inject(ToastService);
 
-  grades = this.gradeService.grades;
+  grades = this.gradesClient.grades;
 
   isLoading = signal<boolean>(false);
   showDetails = signal<boolean>(false);
@@ -60,7 +61,7 @@ export class Thresholds implements OnInit {
     this.isLoading.set(true)
 
     if ("id" in event) {
-      this.gradeService.updateGrade(event.id, event.data).subscribe({
+      this.gradesClient.updateGrade(event.id, event.data).subscribe({
         next: () => {
           this.toastService.showToast("Grade updated succes", ToastType.SUCCESS);
           this.onDetailsClose();
@@ -72,7 +73,7 @@ export class Thresholds implements OnInit {
         },
       })
     } else {
-      this.gradeService.createGrade(event).subscribe({
+      this.gradesClient.createGrade(event).subscribe({
         next: () => {
           this.toastService.showToast("Grade created succes", ToastType.SUCCESS);
           this.onDetailsClose();
@@ -101,7 +102,7 @@ export class Thresholds implements OnInit {
 
     if (grade) {
       this.isLoading.set(true);
-      this.gradeService.deleteGrade(grade.id).subscribe({
+      this.gradesClient.deleteGrade(grade.id).subscribe({
         next: () => {
           this.toastService.showToast("Grade deleted successfully", ToastType.SUCCESS);
 
@@ -127,9 +128,9 @@ export class Thresholds implements OnInit {
 
   private loadGrades() {
     this.isLoading.set(true);
-    this.gradeService.getGrades().subscribe({
+    this.gradesClient.getGrades().subscribe({
       next: (grades) => {
-        this.gradeService.grades.set(grades);
+        this.gradesClient.grades.set(grades);
         this.isLoading.set(false);
       },
       error: (error) => {

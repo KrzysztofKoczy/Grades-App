@@ -2,12 +2,12 @@ import { Injectable, signal, inject } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
 import { type Observable, BehaviorSubject } from "rxjs"
 import { tap, catchError } from "rxjs/operators"
-import { Grade, GradeCreate, GradeModify } from "../shared/models/grade.model"
+import { Grade, GradeCreate, GradeModify } from "../../../shared/models/grade.model"
 
 @Injectable({
   providedIn: "root",
 })
-export class GradeService {
+export class GradesClient {
   private httpClient = inject(HttpClient);
 
   grades = signal<Grade[]>([]);
@@ -24,11 +24,11 @@ export class GradeService {
   getGrades(): Observable<Grade[]> {
     return this.httpClient.get<Grade[]>(this.apiUrl).pipe(
       tap((grades) => {
-        this.gradesSubject.next(grades)
+        this.gradesSubject.next(grades);
       }),
       catchError((error) => {
-        console.error("API Error: GET /grades", error)
-        throw error
+        console.error("API Error: GET /grades", error);
+        throw error;
       }),
     );
   }
@@ -55,6 +55,6 @@ export class GradeService {
   private refreshGrades(): void {
     setTimeout(() => {
       this.getGrades().subscribe();
-    }, 100)
+    }, 300)
   }
 }

@@ -1,7 +1,7 @@
 @use '../../../../styles/variables.scss' as *;
 
 .grade-details {
-    background: color-bg-secondar;
+    background: $color-bg-secondary;
     border-radius: 12px;
     padding: 24px;
     height: 100%;

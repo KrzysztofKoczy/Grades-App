@@ -8,7 +8,7 @@ import {
 } from "@angular/common/http"
 import { type Observable, of, throwError } from "rxjs"
 import { delay } from "rxjs/operators"
-import { MockGradesData } from "../services/mock-grades-data"
+import { MockGradesData } from "../features/thresholds/services/mock-grades-data"
 import { ConflictResponse, Grade, GradeCreate } from "../shared/models/grade.model"
 
 @Injectable()
