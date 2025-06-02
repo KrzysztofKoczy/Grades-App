@@ -1,5 +1,7 @@
+@use '../../../../styles/variables.scss' as *;
+
 .grade-details {
-    background: #eef5fe;
+    background: color-bg-secondar;
     border-radius: 12px;
     padding: 24px;
     height: 100%;
@@ -10,7 +12,6 @@
   @media (max-width: 768px) {
     .grade-details {
       height: auto;
-      // margin-top: 24px;
     }
   }
   
@@ -20,12 +21,12 @@
     justify-content: space-between;
     margin-bottom: 24px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid $color-border;
   }
   
   .details-header h3 {
     margin: 0;
-    color: #333333;
+    color: $color-text-dark;
     font-size: 20px;
     font-weight: 600;
   }
@@ -41,15 +42,15 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #666666;
+    color: $color-text-light;
     padding: 4px;
     border-radius: 4px;
     transition: all 0.15s ease;
   }
   
   .close-btn:hover {
-    background: rgba(102, 102, 102, 0.1);
-    color: #333333;
+    background: $color-text-light;
+    color: $color-text-dark;
   }
   
   .details-form {
@@ -65,7 +66,7 @@
   .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #333333;
+    color: $color-text-dark;
     font-weight: 500;
   }
   
@@ -73,7 +74,7 @@
   .form-group textarea {
     width: 100%;
     padding: 16px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid $color-border;
     border-radius: 4px;
     font-size: 14px;
     transition: border-color 0.15s ease;
@@ -83,12 +84,12 @@
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: #113f82;
+    border-color: $color-primary;
   }
   
   .form-group input.error,
   .form-group textarea.error {
-    border-color: #dc3545;
+    border-color: $color-error;
   }
   
   .form-group textarea {
@@ -98,14 +99,14 @@
   }
   
   .error-message {
-    color: #dc3545;
+    color: $color-error;
     font-size: 12px;
     margin-top: 4px;
   }
   
   .char-count {
     font-size: 12px;
-    color: #666666;
+    color: $color-text-light;
     text-align: right;
     margin-top: 4px;
   }
@@ -116,7 +117,7 @@
     justify-content: flex-end;
     margin-top: auto;
     padding-top: 24px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid $color-border;
   }
   
   @media (max-width: 768px) {

@@ -1,3 +1,5 @@
+@use '../../../../styles/variables.scss' as *;
+
 .grade-list {
   background: #f7f0e9;
   border-radius: 12px;
@@ -19,7 +21,7 @@
 
 .grade-list-header h2 {
   margin: 0;
-  color: #333333;
+  color: $color-text-dark;
   font-size: 24px;
   font-weight: 600;
 }
@@ -35,14 +37,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666666;
+  color: $color-text-light;
   font-style: italic;
 }
 
 .grade-items {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 8px;
   margin-bottom: 24px;
 
@@ -58,13 +58,17 @@
 }
 
 .grade-items.full-width-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
 }
 
+@media (max-width: 768px) {
+  .grade-items {
+    flex: none;
+  }
+}
+
 .grade-item {
-  background: #ffffff;
+  background: $color-white;
   border-radius: 8px;
   padding: 16px;
   display: flex;
@@ -73,16 +77,18 @@
   cursor: pointer;
   transition: all 0.15s ease;
   border: 2px solid transparent;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .grade-item:hover {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow-sm;
   transform: translateY(-1px);
 }
 
 .grade-item.selected {
-  border-color: #113f82;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: $color-primary;
+  box-shadow: $shadow-md;
 }
 
 .grade-item.mobile-card {
@@ -103,6 +109,8 @@
 
 .grade-item.mobile-card .grade-symbol {
   font-size: 24px;
+  max-width: 90%;
+  text-align: center;
 }
 
 .grade-item.mobile-card .delete-btn {
@@ -117,19 +125,25 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  flex: 1;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
 }
 
 .grade-symbol {
   font-size: 18px;
   font-weight: 700;
-  color: #113f82;
-  min-width: 30px;
+  color: $color-primary;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .grade-range {
-  color: #666666;
+  color: $color-text-light;
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .delete-btn {
@@ -141,18 +155,19 @@
   transition: background-color 0.15s ease;
   font-size: 16px;
   position: relative;
+  color: $color-error;
 }
 
 .delete-btn:hover {
-  background: rgba(220, 53, 69, 0.1);
+  color: $color-error-hover;
 }
 
 .add-grade-btn {
-  background: #c8e0f3;
+  background: $color-button;
   border: none;
   border-radius: 8px;
   padding: 16px;
-  color: #333333;
+  color: $color-text-dark;
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -167,9 +182,9 @@
 }
 
 .add-grade-btn:hover {
-  background: #b8d0e3;
+  background: $color-button;
   transform: translateY(-1px);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow-sm;
 }
 
 .add-icon {

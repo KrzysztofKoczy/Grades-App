@@ -58,8 +58,8 @@
         <button type="button" class="btn btn-secondary" (click)="onClose()">
           Cancel
         </button>
-        <button type="submit" class="btn btn-primary" [disabled]="gradeForm.invalid || isLoading()">
-          {{ isLoading() ? 'Saving...' : 'Create' }}
+        <button type="submit" class="btn btn-primary" [disabled]="gradeForm.invalid">
+          Create
         </button>
       </div>
     </form>

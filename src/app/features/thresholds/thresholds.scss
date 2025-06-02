@@ -1,3 +1,5 @@
+@use '../../styles/variables.scss' as *;
+
 .thresholds-container {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -8,6 +10,7 @@
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+    height: auto;
   }
 }
 

@@ -1,18 +1,17 @@
 <div class="thresholds-container" [class.single-column]="!showDetails()">
   <div class="grade-list-section">
-    <!-- add loder on loading grades -->
-    <app-grade-list [grades]="sortedGrades()"
-                    [selectedGradeId]="selectedGradeId()"
-                    (gradeSelect)="onGradeSelect($event)"
-                    (gradeDelete)="onGradeDeleteRequest($event)"
-                    (addGrade)="onAddGrade()"/>
+      <app-grade-list [grades]="sortedGrades()"
+                      [selectedGradeId]="selectedGradeId()"
+                      [loading]="isLoading()"
+                      (gradeSelect)="onGradeSelect($event)"
+                      (gradeDelete)="onGradeDeleteRequest($event)"
+                      (addGrade)="onAddGrade()"/>
   </div>
   
   @if (showDetails()) {
     <div class="grade-details-section">
       <app-grade-details [isVisible]="showDetails()"
                         [grade]="selectedGrade()"
-                        [isLoading]="isLoading()"
                         (save)="onGradeSave($event)"
                         (close)="onDetailsClose()"/>
     </div>

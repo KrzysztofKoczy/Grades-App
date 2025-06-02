@@ -9,7 +9,7 @@
 .main-content {
   flex: 1;
   margin-left: 280px;
-  padding: $spacing-lg;
+  padding: 24px;
   transition: margin-left 0.3s ease;
 
   &.sidebar-collapsed {
@@ -22,7 +22,7 @@
 
   @media (max-width: $mobile) {
     margin-left: 0;
-    padding: $spacing-md;
+    padding: 16px;
     padding-top: 80px;
   }
 }

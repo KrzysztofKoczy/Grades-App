@@ -57,9 +57,9 @@
   .toggle-btn {
     position: absolute;
     right: -12px;
-    background: white;
-    border: 1px solid gray;
-    color: black;
+    background: $color-white;
+    border: 1px solid $color-text-dark;
+    color: $color-black;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -76,7 +76,7 @@
   }
 
   .toggle-btn:hover {
-    border: 2px solid blue;
+    border: 2px solid $color-primary;
   }
   
   @media (max-width: 768px) {
@@ -110,12 +110,9 @@
     color: inherit;
   }
   
-  .nav-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  
-  .nav-item.active {
-    background: rgba(255, 255, 255, 0.2);
+  .nav-item:hover,
+  .nav-item.activ {
+    background: $color-button-gray;
   }
   
   .nav-icon {
@@ -162,7 +159,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: $color-overlay;
     z-index: 999;
     display: none;
   }

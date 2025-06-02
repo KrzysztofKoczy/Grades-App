@@ -2,17 +2,17 @@
 
 .toast-container {
   position: fixed;
-  top: $spacing-lg;
-  right: $spacing-lg;
+  top: 24px;
+  right: 24px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: $spacing-sm;
+  gap: 8px;
 }
 
 .toast {
   min-width: 300px;
-  padding: $spacing-md;
+  padding: 16px;
   border-radius: 8px;
   box-shadow: $shadow-lg;
   display: flex;
@@ -48,7 +48,7 @@
   font-size: 20px;
   cursor: pointer;
   padding: 0;
-  margin-left: $spacing-md;
+  margin-left: 16px; 
   opacity: 0.8;
   transition: opacity 0.3s ease;
 

@@ -14,7 +14,6 @@ import { Grade, GradeCreate, GradeModify } from "../../../../shared/models/grade
 export class GradeDetails {
   isVisible = input<boolean>(false);
   grade = input<Grade | null>(null);
-  isLoading = input<boolean>(false);
 
   save = output<GradeCreate | { id: string; data: GradeModify }>();
   close = output<void>();

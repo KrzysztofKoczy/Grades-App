@@ -1,17 +1,19 @@
 import { Component, ChangeDetectionStrategy, input, output, signal, effect, OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import type { Grade } from "../../../../shared/models/grade.model"
+import { Icon } from "../../../../shared/icon/icon";
 
 @Component({
   selector: "app-grade-list",
   templateUrl: "./grade-list.html",
   styleUrls: ["./grade-list.scss"],
-  imports: [CommonModule],
+  imports: [CommonModule, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GradeList implements OnInit {
   grades = input.required<Grade[]>();
   selectedGradeId = input<string | null>(null);
+  loading = input<boolean>(true);
 
   gradeSelect = output<string>();
   gradeDelete = output<string>();

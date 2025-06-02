@@ -100,6 +100,7 @@ export class Thresholds implements OnInit {
     const grade = this.gradeToDelete();
 
     if (grade) {
+      this.isLoading.set(true);
       this.gradeService.deleteGrade(grade.id).subscribe({
         next: () => {
           this.toastService.showToast("Grade deleted successfully", ToastType.SUCCESS);
@@ -107,9 +108,11 @@ export class Thresholds implements OnInit {
           if (this.selectedGradeId() === grade.id) {
             this.onDetailsClose();
           }
+          this.isLoading.set(false);
         },
         error: (error) => {
           this.toastService.showToast(`Failed to delete grade ${error}`, ToastType.ERROR);
+          this.isLoading.set(false);
         },
       })
     }
@@ -123,12 +126,15 @@ export class Thresholds implements OnInit {
   }
 
   private loadGrades() {
+    this.isLoading.set(true);
     this.gradeService.getGrades().subscribe({
       next: (grades) => {
         this.gradeService.grades.set(grades);
+        this.isLoading.set(false);
       },
       error: (error) => {
         this.toastService.showToast("Failed to load grades", ToastType.ERROR);
+        this.isLoading.set(false);
       },
     })
   }
