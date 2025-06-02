@@ -1,7 +1,7 @@
 @use '../../../../styles/variables.scss' as *;
 
 .grade-list {
-  background: linear-gradient(135deg, $color-bg-primary 0%, $color-bg-secondary 100%);
+  background: #DAEBF7;
   border-radius: 12px;
   padding: 24px;
   height: 100%;
@@ -164,7 +164,7 @@
 }
 
 .add-grade-btn {
-  background: $color-button;
+  background: #f3c074;
   border: none;
   border-radius: 8px;
   padding: 16px;
@@ -183,7 +183,7 @@
 }
 
 .add-grade-btn:hover {
-  background: $color-button;
+  background: #eba743;
   transform: translateY(-1px);
   box-shadow: $shadow-sm;
 }

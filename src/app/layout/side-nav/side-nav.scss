@@ -4,7 +4,7 @@
   width: 280px;
   height: 100vh;
   background: $color-sidebar;
-  color: $color-white;
+  color: $color-black;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -112,7 +112,8 @@
   
   .nav-item:hover,
   .nav-item.activ {
-    background: $color-button-gray;
+    color: $color-sidebar;
+    background: $color-black;
   }
   
   .nav-icon {
