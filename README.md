@@ -4,7 +4,11 @@ Projekt stworzony przy użyciu [Angular CLI](https://github.com/angular/angular-
 
 Aplikacja do zarządzania ocenami, umożliwiająca definiowanie progów procentowych i przypisywanie im ocen opisowych. 
 
-## 🚀 Funkcje
+## 🚀 Live Demo
+
+Check out the live application: [Employee Hierarchy Tree Demo](https://krzysztofkoczy.github.io/Grades-App/)
+
+## Funkcje
 
 - Zarządzanie ocenami z progami procentowymi
 - Definiowanie ocen symbolicznych i opisowych
