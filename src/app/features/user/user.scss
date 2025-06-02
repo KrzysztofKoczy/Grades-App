@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #f7f0e9 0%, #eef5fe 100%);
+  border-radius: 12px;
+}
+  
+.user-content {
+  text-align: center;
+  padding: 48px;
+}
+  
+.user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 32px;
+  background: $color-white;
+  border-radius: 50%;
+  box-shadow: $shadow-lg;
+}
+  
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+p {
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+  
