@@ -58,6 +58,6 @@ export class GradesClient {
   private refreshGrades(): void {
     setTimeout(() => {
       this.getGrades().subscribe();
-    }, 300)
+    })
   }
 }
