@@ -1,5 +1,5 @@
-# Grades App
-Napisać  w tytule, że z interceptorem oraz testy E2E Cypress
+# Grades App with Interceptor and Cypress tests
+
 Projekt stworzony przy użyciu [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0. 
 
 Aplikacja do zarządzania ocenami, umożliwiająca definiowanie progów procentowych i przypisywanie im ocen opisowych. 
