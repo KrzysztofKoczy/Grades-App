@@ -1,67 +1,74 @@
-@if (isVisible()) {
-  <div class="grade-details">
-    <div class="details-header">
-      <h3>{{ isEditing() ? 'Edit Grade' : 'Add New Grade' }}</h3>
-      <button class="close-btn" (click)="onClose()">×</button>
-    </div>
-    
-    <form class="details-form" [formGroup]="gradeForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="minPercentage">Percent from *</label>
-        <input type="number"
-              id="minPercentage"
-              formControlName="minPercentage"
-              min="0"
-              max="100"
-              [class.error]="gradeForm.get('minPercentage')?.invalid && gradeForm.get('minPercentage')?.touched"/>
-        @if (gradeForm.get('minPercentage')?.invalid && gradeForm.get('minPercentage')?.touched) {
-          <div class="error-message">
-            @if (gradeForm.get('minPercentage')?.errors?.['required']) {
-              Minimum percentage is required
-            }
-            @if (gradeForm.get('minPercentage')?.errors?.['min']) {
-              Minimum percentage must be at least 0
-            }
-            @if (gradeForm.get('minPercentage')?.errors?.['max']) {
-              Minimum percentage must be at most 100
-            }
-          </div>
-        }
-      </div>
-
-      <div class="form-group">
-        <label for="symbolicGrade">Grade *</label>
-        <input type="text"
-              id="symbolicGrade"
-              formControlName="symbolicGrade"
-              maxlength="32"
-              [class.error]="gradeForm.get('symbolicGrade')?.invalid && gradeForm.get('symbolicGrade')?.touched"/>
-        @if (gradeForm.get('symbolicGrade')?.invalid && gradeForm.get('symbolicGrade')?.touched) {
-          <div class="error-message">
-            @if (gradeForm.get('symbolicGrade')?.errors?.['required']) {
-              Grade symbol is required
-            }
-          </div>
-        }
-        <div class="char-count">{{ gradeForm.get('symbolicGrade')?.value?.length || 0 }}/32</div>
-      </div>
-
-      <div class="form-group">
-        <label for="descriptiveGrade">Grade description</label>
-        <textarea id="descriptiveGrade"
-                  formControlName="descriptiveGrade"
-                  rows="4"
-                  placeholder="Enter grade description..."></textarea>
-      </div>
-
-      <div class="form-actions">
-        <button type="button" class="btn btn-secondary" (click)="onClose()">
-          Cancel
-        </button>
-        <button type="submit" class="btn btn-primary" [disabled]="gradeForm.invalid">
-          Create
-        </button>
-      </div>
-    </form>
+<div class="grade-details">
+  <div class="details-header">
+    <h3>{{ isEditing() ? 'Edit Grade' : 'Add New Grade' }}</h3>
+    <button class="close-btn" (click)="onClose()">×</button>
   </div>
-}
+  
+  <form class="details-form" [formGroup]="gradeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="minPercentage">Percent from *</label>
+      <input type="number"
+            id="minPercentage"
+            formControlName="minPercentage"
+            min="0"
+            max="100"
+            (blur)="calculateMaxPercentage()"
+            [class.error]="gradeForm.get('minPercentage')?.invalid && gradeForm.get('minPercentage')?.touched"/>
+      @if (gradeForm.get('minPercentage')?.invalid && gradeForm.get('minPercentage')?.touched) {
+        <div class="error-message">
+          @if (gradeForm.get('minPercentage')?.errors?.['required']) {
+            Minimum percentage is required
+          }
+          @if (gradeForm.get('minPercentage')?.errors?.['min']) {
+            Minimum percentage must be at least 0
+          }
+          @if (gradeForm.get('minPercentage')?.errors?.['max']) {
+            Minimum percentage must be at most 100
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Max Percentage</label>
+      <input class="input-readolny"
+            readonly
+            type="number"
+            [value]="maxPercentage()"/>
+    </div>
+
+    <div class="form-group">
+      <label for="symbolicGrade">Grade *</label>
+      <input type="text"
+            id="symbolicGrade"
+            formControlName="symbolicGrade"
+            maxlength="32"
+            [class.error]="gradeForm.get('symbolicGrade')?.invalid && gradeForm.get('symbolicGrade')?.touched"/>
+      @if (gradeForm.get('symbolicGrade')?.invalid && gradeForm.get('symbolicGrade')?.touched) {
+        <div class="error-message">
+          @if (gradeForm.get('symbolicGrade')?.errors?.['required']) {
+            Grade symbol is required
+          }
+        </div>
+      }
+      <div class="char-count">{{ gradeForm.get('symbolicGrade')?.value?.length || 0 }}/32</div>
+    </div>
+
+    <div class="form-group">
+      <label for="descriptiveGrade">Grade description</label>
+      <textarea id="descriptiveGrade"
+                formControlName="descriptiveGrade"
+                rows="4"
+                placeholder="Enter grade description..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onClose()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="gradeForm.invalid">
+        Create
+      </button>
+    </div>
+  </form>
+</div>

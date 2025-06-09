@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal, inject, computed, OnInit } from "@angular/core"
+import { Component, ChangeDetectionStrategy, signal, inject, computed, OnInit, ViewChild, ElementRef, effect } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import type { Grade, GradeCreate, GradeModify } from "../../shared/models/grade.model"
 import { GradeList } from "./components/grade-list/grade-list"
@@ -20,6 +20,8 @@ export class Thresholds implements OnInit {
   private gradesClient = inject(GradesClient);
   private toastService = inject(ToastService);
 
+  @ViewChild("gradeDetailsElement", { static: false }) gradeDetailsElement!: ElementRef;
+  
   grades = this.gradesClient.grades;
 
   isLoading = signal<boolean>(false);
@@ -37,6 +39,16 @@ export class Thresholds implements OnInit {
 
     return id ? this.grades().find((grade) => grade.id === id) || null : null;
   })
+
+  constructor() {
+    effect(() => {
+      if (this.showDetails()) {
+        setTimeout(() => {
+          this.scrollToGradeDetails();
+        }, 100)
+      }
+    })
+  }
 
   ngOnInit() {
     this.loadGrades();
@@ -138,5 +150,15 @@ export class Thresholds implements OnInit {
         this.isLoading.set(false);
       },
     })
+  }
+
+  private scrollToGradeDetails() {
+    if (this.gradeDetailsElement?.nativeElement) {
+      this.gradeDetailsElement.nativeElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      })
+    }
   }
 }

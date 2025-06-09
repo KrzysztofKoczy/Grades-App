@@ -13,7 +13,7 @@
         <p>No grades configured yet.</p>
       </div>
     } @else {
-      <div class="grade-items" [class.mobile-grid]="isMobileView()" [class.full-width-grid]="isFullWidth() && !isMobileView()">
+      <div class="grade-items" [class.mobile-grid]="isMobileView()">
         @for (grade of grades(); track grade.id; let i = $index) {
           <div class="grade-item" 
               [class.selected]="selectedGradeId() === grade.id"

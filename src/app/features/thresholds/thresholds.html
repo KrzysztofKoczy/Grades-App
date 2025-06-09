@@ -1,17 +1,14 @@
 <div class="thresholds-container" [class.single-column]="!showDetails()">
-  <div class="grade-list-section">
-      <app-grade-list [grades]="sortedGrades()"
-                      [selectedGradeId]="selectedGradeId()"
-                      [loading]="isLoading()"
-                      (gradeSelect)="onGradeSelect($event)"
-                      (gradeDelete)="onGradeDeleteRequest($event)"
-                      (addGrade)="onAddGrade()"/>
-  </div>
+  <app-grade-list [grades]="sortedGrades()"
+                  [selectedGradeId]="selectedGradeId()"
+                  [loading]="isLoading()"
+                  (gradeSelect)="onGradeSelect($event)"
+                  (gradeDelete)="onGradeDeleteRequest($event)"
+                  (addGrade)="onAddGrade()"/>
   
   @if (showDetails()) {
-    <div class="grade-details-section">
-      <app-grade-details [isVisible]="showDetails()"
-                        [grade]="selectedGrade()"
+    <div  #gradeDetailsElement>
+      <app-grade-details  [grade]="selectedGrade()"
                         (save)="onGradeSave($event)"
                         (close)="onDetailsClose()"/>
     </div>

@@ -3,7 +3,8 @@
     <div class="logo">
       <a class="nav-item"
         routerLink="/user" 
-        title="User">
+        title="User"
+        (click)="closeSidebar()">
       <span class="nav-icon">
         <app-icon name="user"/>
       </span>
@@ -25,7 +26,8 @@
     @for (item of navigationItems; track item.name) {
       <a class="nav-item"
         [routerLink]="item.path" 
-        [title]="item.label">
+        [title]="item.label"
+        (click)="closeSidebar()">
         <span class="nav-icon">
           <app-icon [name]="item.icon"/>
         </span>

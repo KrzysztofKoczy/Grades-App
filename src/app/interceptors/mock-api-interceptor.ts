@@ -7,7 +7,6 @@ import {
   HttpErrorResponse,
 } from "@angular/common/http"
 import { type Observable, of, throwError } from "rxjs"
-import { delay } from "rxjs/operators"
 import { MockGradesData } from "../features/thresholds/services/mock-grades-data"
 import { ConflictResponse, Grade, GradeCreate } from "../shared/models/grade.model"
 
@@ -36,7 +35,7 @@ export class MockApiInterceptor implements HttpInterceptor {
           status: 200,
           body: grades,
         }),
-      ).pipe(delay(300));
+      );
     }
 
     // GET gared by id
@@ -52,7 +51,7 @@ export class MockApiInterceptor implements HttpInterceptor {
             status: 404,
             error: { message: "Grade not found" },
           }),
-        ).pipe(delay(200));
+        )
       }
 
       console.log('get grade by id OK: gradeId - ', gradeId, 'grade - ', grade);
@@ -62,7 +61,7 @@ export class MockApiInterceptor implements HttpInterceptor {
           status: 200,
           body: { ...grade },
         }),
-      ).pipe(delay(200))
+      )
     }
 
     // POST grades
@@ -82,7 +81,7 @@ export class MockApiInterceptor implements HttpInterceptor {
               status: 409,
               error,
             }),
-        ).pipe(delay(300));
+        )
       }
 
       const newGrade: Grade = {
@@ -98,7 +97,7 @@ export class MockApiInterceptor implements HttpInterceptor {
           status: 201,
           body: { ...newGrade },
         }),
-      ).pipe(delay(300))
+      )
     }
 
     // PATCH change existing grade
@@ -114,7 +113,7 @@ export class MockApiInterceptor implements HttpInterceptor {
               status: 404,
               error: { message: "Not found" },
             }),
-        ).pipe(delay(300));
+        )
       }
 
       if (updateData.minPercentage !== undefined) {
@@ -131,7 +130,7 @@ export class MockApiInterceptor implements HttpInterceptor {
                 status: 409,
                 error,
               }),
-          ).pipe(delay(300));
+          )
         }
       }
 
@@ -144,7 +143,7 @@ export class MockApiInterceptor implements HttpInterceptor {
           status: 204,
           body: null,
         }),
-      ).pipe(delay(300))
+      )
     }
 
     // DELETE grade
@@ -158,7 +157,7 @@ export class MockApiInterceptor implements HttpInterceptor {
               status: 404,
               error: { message: "Grade not found" },
             }),
-        ).pipe(delay(300));
+          );
       }
 
       console.log('DELETE /grades/', gradeId, ' - 204 Success');
@@ -168,7 +167,7 @@ export class MockApiInterceptor implements HttpInterceptor {
           status: 204,
           body: null,
         }),
-      ).pipe(delay(300));
+      )
     }
 
     return next.handle(request);

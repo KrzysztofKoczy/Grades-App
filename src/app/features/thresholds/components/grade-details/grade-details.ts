@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, input, output, signal, effect } from "@angular/core"
+import { Component, ChangeDetectionStrategy, input, output, signal, effect, inject } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms"
 import { Grade, GradeCreate, GradeModify } from "../../../../shared/models/grade.model"
+import { GradesClient } from "../../services/grades-client";
 
 @Component({
   selector: "app-grade-details",
@@ -11,7 +12,9 @@ import { Grade, GradeCreate, GradeModify } from "../../../../shared/models/grade
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GradeDetails {
-  isVisible = input<boolean>(false);
+  private formBuilder = inject(FormBuilder);
+  private gradesClient = inject(GradesClient);
+  
   grade = input<Grade | null>(null);
 
   save = output<GradeCreate | { id: string; data: GradeModify }>();
@@ -19,13 +22,19 @@ export class GradeDetails {
 
   gradeForm: FormGroup;
   isEditing = signal<boolean>(false);
+  maxPercentage = signal<number | null>(null);
 
-  constructor(private fb: FormBuilder) {
-    this.gradeForm = this.fb.group({
+  constructor() {
+    this.gradeForm = this.formBuilder.group({
       minPercentage: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
       symbolicGrade: ['', [Validators.required, Validators.maxLength(32)]],
       descriptiveGrade: ['']
     });
+
+    this.gradeForm.get('minPercentage')?.valueChanges.subscribe(() => {
+      this.calculateMaxPercentage();
+    });
+
 
     effect(() => {
       const currentGrade = this.grade();
@@ -48,7 +57,7 @@ export class GradeDetails {
     })
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.gradeForm.invalid) {
       return;
     }
@@ -77,7 +86,22 @@ export class GradeDetails {
     }
   }
 
-  onClose() {
+  calculateMaxPercentage(): void {
+    const minPercentage = this.gradeForm.get('minPercentage')?.value;
+  
+    if (minPercentage === 0 && this.isEditing()) {
+      this.maxPercentage.set(0);
+      return;
+    }
+  
+    const allGrades = this.gradesClient.grades();
+    const sortedGrades = [...allGrades].sort((a, b) => a.minPercentage - b.minPercentage);
+    const nextGrade = sortedGrades.find(grade => grade.minPercentage > minPercentage);
+  
+    this.maxPercentage.set(nextGrade ? nextGrade.minPercentage - 1 : 100)
+  }
+
+  onClose(): void {
     this.close.emit();
   }
 }

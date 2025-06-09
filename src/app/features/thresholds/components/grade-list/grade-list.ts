@@ -20,17 +20,10 @@ export class GradeList implements OnInit {
   addGrade = output<void>();
 
   isMobileView = signal<boolean>(false);
-  isFullWidth = signal<boolean>(false);
 
   ngOnInit() {
     this.checkScreenSize();
     window.addEventListener("resize", () => this.checkScreenSize());
-  }
-
-  constructor() {
-    effect(() => {
-      this.isFullWidth.set(!this.selectedGradeId());
-    })
   }
 
   onGradeSelect(id: string) {
