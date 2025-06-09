@@ -1,5 +1,5 @@
 @if (isOpen()) {
-  <div class="modal-overlay" (click)="onCancel()">
+  <div data-qa="modal" class="modal-overlay" (click)="onCancel()">
     <div class="modal" (click)="$event.stopPropagation()">
       <div class="modal-header">
         <h3>{{ title() }}</h3>
@@ -12,6 +12,7 @@
       <div class="modal-footer">
         <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
         <button class="btn" 
+              data-qa="confirm-delete-btn"
               [class.btn-primary]="!isDangerButton()"
               [class.btn-danger]="isDangerButton()"
               (click)="onConfirm()">

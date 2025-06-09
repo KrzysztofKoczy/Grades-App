@@ -1,0 +1,36 @@
+{
+  "validGrades": [
+    {
+      "minPercentage": 15,
+      "symbolicGrade": "D+",
+      "descriptiveGrade": "Below average but showing improvement"
+    },
+    {
+      "minPercentage": 85,
+      "symbolicGrade": "A-",
+      "descriptiveGrade": "Excellent performance with minor areas for improvement"
+    }
+  ],
+  "invalidGrades": [
+    {
+      "minPercentage": 0,
+      "symbolicGrade": "F2",
+      "descriptiveGrade": "Duplicate percentage"
+    },
+    {
+      "minPercentage": -5,
+      "symbolicGrade": "Invalid",
+      "descriptiveGrade": "Negative percentage"
+    },
+    {
+      "minPercentage": 105,
+      "symbolicGrade": "Invalid",
+      "descriptiveGrade": "Over 100 percentage"
+    }
+  ],
+  "editData": {
+    "minPercentage": 25,
+    "symbolicGrade": "D",
+    "descriptiveGrade": "Updated description for grade D"
+  }
+}

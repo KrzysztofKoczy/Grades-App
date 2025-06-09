@@ -1,4 +1,4 @@
-<div class="grade-list">
+<div data-qa="grade-list" class="grade-list">
   <div class="grade-list-header">
     <h2>Grade Thresholds</h2>
   </div>
@@ -13,17 +13,19 @@
         <p>No grades configured yet.</p>
       </div>
     } @else {
-      <div class="grade-items" [class.mobile-grid]="isMobileView()">
+      <div data-qa="grade-items" class="grade-items" [class.mobile-grid]="isMobileView()">
         @for (grade of grades(); track grade.id; let i = $index) {
           <div class="grade-item" 
+              [attr.data-qa]="'grade-item-' + $index"
               [class.selected]="selectedGradeId() === grade.id"
               [class.mobile-card]="isMobileView()"
               (click)="onGradeSelect(grade.id)">
             <div class="grade-info">
               <span class="grade-symbol">{{ grade.symbolicGrade }}</span>
-              <div class="grade-range">{{ grade.minPercentage }}% - {{ getMaxPercentage(i) }}%</div>
+              <div data-qa="grade-range" class="grade-range">{{ grade.minPercentage }}% - {{ getMaxPercentage(i) }}%</div>
             </div>
             <button class="delete-btn" 
+                    [attr.data-qa]="'delete-button-' + $index"
                     (click)="onGradeDelete($event, grade.id)"
                     title="Delete grade">
                     <app-icon name="trash"/>
@@ -33,7 +35,7 @@
       </div>
     }
     
-    <button class="add-grade-btn" (click)="onAddGrade()">
+    <button data-qa="add-grade-btn" class="add-grade-btn" (click)="onAddGrade()">
       <span class="add-icon">+</span>
       ADD NEW GRADE
     </button>

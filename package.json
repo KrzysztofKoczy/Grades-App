@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=/Grades-App/"
+    "deploy": "ng deploy --base-href=/Grades-App/",
+    "e2e": "cypress run",
+    "e2e:open": "cypress open",
+    "ci:e2e": "start-server-and-test start http://localhost:4200 e2e:headless"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +31,7 @@
     "@angular/compiler-cli": "^20.0.0",
     "@types/jasmine": "~5.1.0",
     "angular-cli-ghpages": "^2.0.3",
+    "cypress": "^14.4.1",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

@@ -1,7 +1,8 @@
-<aside class="sidebar" [class.collapsed]="isCollapsed()">
+<aside class="sidebar" data-qa="sidebar" [class.collapsed]="isCollapsed()">
   <div class="sidebar-header">
     <div class="logo">
       <a class="nav-item"
+        data-qa="nav-item-user"
         routerLink="/user" 
         title="User"
         (click)="closeSidebar()">
@@ -13,7 +14,7 @@
       }
     </a>
     </div>
-    <button class="toggle-btn" (click)="toggleSidebar()">
+    <button data-qa="sidebar-toggle-button" class="toggle-btn" (click)="toggleSidebar()">
       @if (isCollapsed()) {
         <app-icon name="chevronRight" [size]="16"/>
       } @else {
@@ -27,6 +28,7 @@
       <a class="nav-item"
         [routerLink]="item.path" 
         [title]="item.label"
+        [attr.data-qa]="'nav-item-' + item.name"
         (click)="closeSidebar()">
         <span class="nav-icon">
           <app-icon [name]="item.icon"/>
@@ -40,11 +42,11 @@
 </aside>
 
 @if (isCollapsed() && showMobileToggle()) {
-  <button class="mobile-toggle-btn" (click)="toggleSidebar()">
+  <button data-qa="mobile-nav-button" class="mobile-toggle-btn" (click)="toggleSidebar()">
     <app-icon name="menu"/>
  </button>
 }
 
 @if (!isCollapsed() && showMobileToggle()) {
-  <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+  <div data-qa="sidebar-overlay" class="sidebar-overlay" (click)="closeSidebar()"></div>
 }

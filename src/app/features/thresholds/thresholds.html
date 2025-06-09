@@ -8,7 +8,8 @@
   
   @if (showDetails()) {
     <div  #gradeDetailsElement>
-      <app-grade-details  [grade]="selectedGrade()"
+      <app-grade-details data-qa="grade-details" 
+                        [grade]="selectedGrade()"
                         (save)="onGradeSave($event)"
                         (close)="onDetailsClose()"/>
     </div>

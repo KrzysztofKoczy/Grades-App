@@ -1,4 +1,4 @@
-<div class="grade-details">
+<div data-qa="grade-details-section" class="grade-details">
   <div class="details-header">
     <h3>{{ isEditing() ? 'Edit Grade' : 'Add New Grade' }}</h3>
     <button class="close-btn" (click)="onClose()">×</button>
@@ -12,10 +12,11 @@
             formControlName="minPercentage"
             min="0"
             max="100"
+            data-qa="min-percentage-input"
             (blur)="calculateMaxPercentage()"
             [class.error]="gradeForm.get('minPercentage')?.invalid && gradeForm.get('minPercentage')?.touched"/>
       @if (gradeForm.get('minPercentage')?.invalid && gradeForm.get('minPercentage')?.touched) {
-        <div class="error-message">
+        <div data-qa="error-message-min" class="error-message">
           @if (gradeForm.get('minPercentage')?.errors?.['required']) {
             Minimum percentage is required
           }
@@ -43,9 +44,10 @@
             id="symbolicGrade"
             formControlName="symbolicGrade"
             maxlength="32"
+            data-qa="symbolic-grade-input"
             [class.error]="gradeForm.get('symbolicGrade')?.invalid && gradeForm.get('symbolicGrade')?.touched"/>
       @if (gradeForm.get('symbolicGrade')?.invalid && gradeForm.get('symbolicGrade')?.touched) {
-        <div class="error-message">
+        <div data-qa="error-message-symbol" class="error-message">
           @if (gradeForm.get('symbolicGrade')?.errors?.['required']) {
             Grade symbol is required
           }
@@ -59,14 +61,15 @@
       <textarea id="descriptiveGrade"
                 formControlName="descriptiveGrade"
                 rows="4"
+                data-qa="descriptive-grade-input"
                 placeholder="Enter grade description..."></textarea>
     </div>
 
     <div class="form-actions">
-      <button type="button" class="btn btn-secondary" (click)="onClose()">
+      <button data-qa="close-btn" type="button" class="btn btn-secondary" (click)="onClose()">
         Cancel
       </button>
-      <button type="submit" class="btn btn-primary" [disabled]="gradeForm.invalid">
+      <button data-qa="submit-btn" type="submit" class="btn btn-primary" [disabled]="gradeForm.invalid">
         Create
       </button>
     </div>

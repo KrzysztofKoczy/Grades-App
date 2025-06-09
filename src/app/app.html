@@ -1,7 +1,8 @@
 <div class="app-layout">
   <app-side-nav (sidebarToggle)="onSidebarToggle($event)"/>
     
-  <main class="main-content" 
+  <main data-qa="main-content" 
+      class="main-content" 
       [class.sidebar-collapsed]="sidebarCollapsed() === true"
       [class.sidebar-closed]="sidebarCollapsed() === 'closed'">
     <router-outlet/>

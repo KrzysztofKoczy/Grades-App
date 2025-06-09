@@ -10,7 +10,7 @@ import { ToastService } from "./services/toast.service"
   template: `
     <div class="toast-container">
       @for (toast of toastService.toasts(); track toast.id) {
-        <div class="toast" [class]="'toast-' + toast.type">
+        <div class="toast" [attr.data-qa]="'toast-' + toast.type.toLowerCase()" [class]="'toast-' + toast.type">
           <span class="toast-message">{{ toast.message }}</span>
           <button class="toast-close" (click)="toastService.removeToast(toast.id)">×</button>
         </div>
